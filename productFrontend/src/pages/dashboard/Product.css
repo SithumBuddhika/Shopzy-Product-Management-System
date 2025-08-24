@@ -1,0 +1,1053 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+/* General Reset */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ebebeb;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent body scrolling */
+}
+
+/* Hide scrollbar for entire body */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Main Container */
+.maincontainer {
+  height: 89vh;
+  width: 86vw;
+  overflow: hidden;
+  margin-top: 0rem; /* Reduce this if needed */
+  margin-left: 215px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1000; /* Lower than top-bar */
+  background-color: #ebebeb;
+}
+
+/* Top Switch Section */
+.switch {
+  width: 100vw;
+  height: 2rem;
+  display: flex;
+  border-bottom: 1px solid #c4c2c2;
+}
+
+.s1main,
+.s2main {
+  width: 43vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Default styling for switch tabs */
+.s1sub,
+.s2sub {
+  width: 15vw;
+  height: 2rem;
+  font-size: medium;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+/* Hover state: change text and border to #ff6201 */
+.s1main:hover .s1sub,
+.s2main:hover .s2sub {
+  color: #ff6201;
+  border-bottom-color: #ff6201;
+}
+
+/* Active state: if the active class is applied on the parent element */
+.s1main.active .s1sub,
+.s2main.active .s2sub {
+  color: #ff6201;
+  border-bottom-color: #ff6201;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  width: 100vw;
+  height: 4vh;
+  margin-top: 0.5rem;
+  align-content: center;
+  font-size: x-small;
+  padding-left: 2rem;
+}
+
+/* Page Heading */
+.heading {
+  width: 100vw;
+  height: 4vh;
+  font-size: larger;
+  align-content: center;
+  padding-left: 2rem;
+  font-weight: bold;
+}
+
+/* Slots Container - Holds the scrolling cards and buttons */
+.slots-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  height: 8rem;
+}
+
+/* Scrollable Slots Section */
+.slots {
+  display: flex;
+  flex-direction: row;
+  column-gap: 3rem;
+  align-content: center;
+  width: 77.4vw;
+  height: 17vh;
+  overflow-x: auto; /* Allows horizontal scrolling */
+  overflow-y: hidden;
+  white-space: nowrap; /* Keeps cards in one row */
+  scroll-behavior: smooth;
+  margin-left: 4.5rem;
+  padding-right: 0.2rem;
+  padding-left: 0.5rem;
+
+  /* Hide scrollbar */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.slots::-webkit-scrollbar {
+  display: none; /* Hides scrollbar in Chrome, Safari */
+}
+
+/* Card Styling */
+.card {
+  border: 2px solid white;
+  width: 6.6rem;
+  height: 6.6rem;
+  border-radius: 15px;
+  flex: 0 0 auto; /* Prevents cards from shrinking */
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  cursor: pointer;
+  align-items: center;
+  color: black;
+  margin-bottom: 1rem;
+}
+
+.card:focus,
+.card:active {
+  background-color: white;
+  color: black;
+  border: 2px solid #ff6201;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+  font-weight: bolder;
+}
+
+.img {
+  margin-top: 0%;
+  height: 3.8rem;
+  align-items: center;
+  align-content: center;
+}
+
+.title {
+  height: 1rem;
+  font-size: 8px;
+  text-align: center;
+  align-content: center;
+  margin-bottom: 0.1rem;
+  margin-top: 0.3rem;
+  letter-spacing: -0.15px;
+}
+
+/* Scroll Buttons - Smaller, Modern, and Clean */
+.scroll-left,
+.scroll-right {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  background: white; 
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  margin-left: 1rem;
+  align-items: center;
+  align-content: center;
+  transition: background 0.2s ease-in-out, transform 0.2s;
+}
+
+.scroll-left:hover,
+.scroll-right:hover {
+  background: white;
+  transform: translateY(-50%) scale(1.1);
+  border: 1px solid #ff6201;
+}
+
+.scroll-left {
+  left: 15px;
+}
+
+.scroll-right {
+  right: 15px;
+}
+
+.scroll-left i,
+.scroll-right i {
+  font-size: 0.7rem;
+  color: black;
+  align-items: center;
+  text-align: center;
+}
+
+.full_view {
+  width: 86vw;
+  height: 56vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.changecont {
+  /* border: 2px solid #ff6201; */
+  /* background-color: #ff6201; */
+  height: 52.5vh;
+  width: 60vw;
+  margin-top: 0.5rem;
+  margin-left: 2vw;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.fixedcont {
+  /* border: 2px solid green; */
+  height: 51vh;
+  width: 22vw;
+  margin-top: 0.5rem;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  /* margin-top: 20px; */
+}
+
+/* New styles for slider and container switching */
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 200%;
+}
+
+.switchcontainer1,
+.switchcontainer2 {
+  width: 50%;
+}
+
+.headingchange {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-left: 3rem;
+  color: Black;
+  font-weight: bolder;
+}
+
+/* Original scrollcards border & height */
+.scrollcards {
+  /* border: 2px solid black; */
+  height: 100%;
+}
+
+/* Hide vertical scrollbar in .scrollcards but keep scrolling */
+.scrollcards {
+  overflow-y: auto !important;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;      /* Firefox */
+}
+.scrollcards::-webkit-scrollbar {
+  display: none; 
+}
+
+/* Use flex-wrap to display multiple scards in rows */
+.scrollcards {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+  padding: 1rem !important;
+  padding-top: 0% !important;
+  box-sizing: border-box !important;
+}
+
+/* 
+   EXACT layout: 
+   .scards is split into .left-section (image) and .right-section (text)
+   so it looks like your reference screenshot 
+*/
+.scards {
+  position: static !important;
+  cursor: pointer !important;
+  width: 17.5rem;       /* approximate width from your screenshot */
+  height: 10rem;  /* approximate height */
+  background-color: #fefefe;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  box-shadow: 0 0 0 #fff;
+  transition: box-shadow 0.2s;
+  
+}
+
+.scards:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Left section for the product image */
+.left-section {
+  /* border: 2px solid black; */
+  width: 35%;
+  /* height: 9rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.card-image {
+  
+  max-width: 90px;
+  max-height: 90px;
+  border-radius: 6px;
+}
+
+/* Right section for text */
+.right-section {
+  /* border: 2px solid black; */
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0;
+  margin-left: 1rem;
+  height: fit-content;
+  height: 9rem;
+}
+
+/* Top row: "Last Edited X ago" with clock icon */
+.top-row {
+  /* border: 2px solid black; */
+  display: flex;
+  align-items: center;
+  font-size: 0.6rem;
+  color: #666;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 0%;
+}
+
+.last-edited{
+  font-weight: bold;
+  font-size: 0.6rem;
+}
+
+.toprowicon{
+  margin-right: 0.4rem;
+}
+
+/* Price, bigger text */
+.card-price {
+  /* border: 2px solid black; */
+  font-size: 1.2rem;
+  margin: 0;
+  margin-bottom: 0;
+  
+  color: #333;
+  font-weight: 600;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Product name */
+.card-name {
+  /* border: 2px solid black; */
+  font-size: 0.8rem;
+  font-weight:normal;
+  width: 100%;
+  margin: 0%;
+  font-family: 'Poppins', sans-serif;
+  margin-top: -0.3rem;
+
+}
+
+/* Weight */
+.card-weight {
+  /* border: 2px solid black; */
+  font-size: 0.7rem;
+  color: #777;
+  width: 100%;
+  margin: 0%;
+  font-family: 'Poppins', sans-serif;
+  margin-top: -0.3rem;
+  margin-bottom: 0.6rem;
+}
+
+/* Badges row */
+.card-badges {
+  /* border: 2px solid black; */
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  height: 1rem;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 0.3rem;
+}
+
+/* Discount badge */
+.discount-badge {
+  background-color: #ff6201;
+  color: white;
+  padding: 1px;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  font-weight: bold;
+  
+  
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  width: 2rem;
+  
+}
+
+/* Availability badge */
+.availability-badge {
+  background-color: #ff6201;
+  color: white;
+  font-weight: bold;
+  padding: 1px;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  width: 4rem;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Edit button with orange border */
+.card-edit-button {
+  margin-top: auto;
+  justify-content: center;
+
+  font-family: 'Poppins', sans-serif;
+  border: 1px solid #ff6201;
+  background-color: transparent;
+  color: #ff6201;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  width: 9rem;
+
+  margin-top: 0.3rem;
+}
+.card-edit-button:hover {
+  background-color: #ffe9d8;
+}
+
+
+.fixedcont-inner {
+  padding: 1rem;
+}
+
+.fixedcont-img {
+  width: 100px;
+  
+}
+
+.fixedcont-title {
+  margin: 0 0 1rem 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.fixedcont-lastEdited {
+  display: flex;
+  align-items: center;
+  color: #FF6201;
+  margin-top: -1.3rem;
+  margin-bottom: 1rem;
+}
+
+.fixedcont-lastEdited i {
+  margin-right: 0.25rem;
+}
+
+.fixedcont-label {
+  font-weight: bold;
+  display: block;
+  
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.fixedcont-input {
+  width: 100%;
+  padding-bottom: 1rem;
+  padding: 0.3rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.fixedcont-availability {
+  display: inline-flex;
+  gap: 1rem; /* Optional spacing between labels */
+  
+}
+
+.fixedcont-availability label {
+  color: #ff6201;
+  cursor: pointer;
+}
+
+.fixedcont-availability {
+  /* Center the entire row horizontally and vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem; /* space between "Available" and "Unavailable" */
+  margin-top: -1rem;
+}
+
+.fixedcont-availability label {
+  color: #ff6201;  /* label text color */
+  cursor: pointer;
+  display: flex;   /* so label text and custom radio align nicely */
+  align-items: center;
+
+  margin-bottom: 1rem;
+}
+
+/* Custom radio styling */
+.fixedcont-availability input[type="radio"] {
+  /* Remove default appearance to apply custom styling */
+  -webkit-appearance: radio;
+  appearance: radio;
+  accent-color: #ff6201;
+
+  width: 12px;
+  height: 12px;
+  margin-right: 0.4rem;
+  border: 2px solid #ff6201;  /* orange ring */
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  top: 0;  /* adjust if you need to nudge the radio up/down */
+}
+
+/* The orange dot that appears when checked */
+.fixedcont-availability input[type="radio"]:checked::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 6px;
+  margin: 2px auto;   /* centers the dot inside the ring */
+  border-radius: 50%;
+  background-color: #ff6201;
+}
+
+
+
+.fixedcont-btn {
+  background-color: #FF6201;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  
+
+  /* Make the button a block-level element and center it */
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.fixedtop{
+  display: flex;
+  flex-direction: row;
+  /* border: 2px solid black; */
+  gap: 1rem;
+  margin-bottom: 1rem;
+  margin-top: -3.5rem;
+  margin-left: 1rem;
+}
+
+.fixedtopoinner{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.fixe4dtopHeading{
+  margin-bottom: 0.5rem;
+}
+
+
+.price-input-wrapper {
+  position: relative;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  /* Extra top padding so the label can float above the border */
+  height: 2.5rem;
+  width: 17rem;
+  margin-left: 1rem;
+  background-color: #fff; /* Ensure the label background matches */
+  font-family: 'Poppins', sans-serif;
+}
+
+.fixedcont-label {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  transform: translateY(-50%);
+  font-weight: bold;
+  background-color: #fff;
+  padding: 0 0.5rem;
+  color: #000;
+  font-family: 'Poppins', sans-serif;
+}
+
+.fixedcont-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 0.7rem;
+  color: #333;
+  background-color: transparent;
+  /* A bit of spacing between label and text */
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+
+
+
+/* ///////////////////////////////////////////////////////// */
+/* Container styling (already inlined width: 50% in JSX) */
+/* Category + Heading */
+
+
+/* Vehicle Type Tabs (icons across the top) */
+
+.headingfleet{
+  height: 4vh;
+  font-size: larger;
+  align-content: center;
+  padding-left: 2rem;
+  font-weight: bold;
+  
+}
+
+.vehicle-type-tabs {
+  
+  display: flex;
+  border: 2px solid green;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  padding: 0.3rem;
+  text-align: center;
+}
+
+.vehicle-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: #555;
+}
+
+.vehicle-type img {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 0.3rem;
+}
+
+/* Highlight active vehicle type */
+.vehicle-type.active {
+  color: #fa6900; /* or your desired highlight color */
+  font-weight: bold;
+}
+
+/* Selected Vehicle Info Row */
+.vehicle-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.vehicle-info .info-item {
+  margin-right: 1.5rem;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.update-button {
+  margin-left: auto; /* pushes button to the right */
+  background-color: #fa6900;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* Table Container */
+.table-container {
+  overflow-x: auto; /* In case of many columns */
+  margin-bottom: 1rem;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* Ensures some default width */
+}
+
+.table-container th,
+.table-container td {
+  border: 1px solid #ddd;
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+}
+
+.table-container th {
+  background-color: #f3f3f3;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.see-more-link {
+  color: #fa6900;
+  text-decoration: none;
+}
+
+.see-more-link:hover {
+  text-decoration: underline;
+}
+
+.topbarfleet{
+  
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  
+  
+}
+
+.fleettopcont{
+  
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+}
+
+
+
+.fleettopcontrol{
+ 
+  display: flex;
+  flex-direction: row;
+  
+
+}
+
+/*################################*/
+
+/* Heading + Button Wrapper */
+.heading-with-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 99%;
+  padding: 1rem 0.5rem 0 2rem;
+  margin-top: -40px;
+  height: 5.3rem;
+  
+}
+
+/* Heading Text */
+.heading-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #000;
+  margin: 0;
+}
+
+.top-buttons{
+  display: flex;
+  flex-direction: row;
+  font-size: 0.5rem;
+  gap: 0.5rem;
+  padding-left: 5rem;
+  /* border: 2px solid black; */
+}
+
+/* Final Add Product Button Styling */
+.add-product-button {
+  background-color: #ff6201;
+  color: white;
+  border: none;
+  border-radius: 999px; /* Fully rounded */
+  padding: 0.5rem 1.2rem;
+  font-size: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  letter-spacing: 1px;
+  transition: background-color 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+  /* margin-left: 220px; */
+  
+  
+}
+
+.download-report-button {
+  background-color: #ff6201;
+  color: white;
+  border: none;
+  border-radius: 999px; /* Fully rounded */
+  padding: 0.5rem 1.2rem;
+  font-size: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  letter-spacing: 1px;
+  transition: background-color 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+  /* margin-left: 220px; */
+  
+}
+
+/* Hover */
+.add-product-button:hover {
+  background-color: #e85c00;
+}
+
+/* Manual plus sign icon */
+.plus-icon {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: -1px;
+}
+
+/* Label */
+.add-label {
+  font-size: 0.6rem;
+}
+
+.headingchange-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.headingchange-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 2rem;
+  margin-right: 2rem;
+}
+
+/*with new search bar*/
+/* New heading toolbar layout */
+/* Container: position relative for icon placement */
+.search-function {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  /* margin-right: 2rem; */
+  margin-right: -180px;
+  margin-top: -22px;
+}
+
+.search-input {
+  padding: 0.6rem 1rem 0.6rem 2.2rem; /* Space for icon inside */
+  border-radius: 2rem;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 0.95rem;
+  color: #555;
+  background: #fff url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat 10px center;
+  background-size: 18px 18px;
+  width: 250px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.search-input::placeholder {
+  color: #6e6e6e;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+}
+
+.search-button {
+  /* background-color: #ff6201;
+  color: white;
+  border: none; */
+  padding: 0.6rem 1.3rem;
+  border-radius: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease;
+  margin-top: 33px;
+  background-color: white;
+  color: #ff6201;
+  border: 2px solid #ff6201;
+}
+
+.search-button:hover {
+  background-color: #e95c00;
+  color: white;
+}
+
+
+.inner {
+  position: relative;
+  overflow: hidden;  /* crop the pseudo‐element to the box */
+  /* border: 2px solid black; */
+  height: 22.5rem;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+/* the background layer */
+.inner::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-image: url("../../components/New Project (16) (2).png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8;      /* <-- your background opacity */
+  
+}
+
+
+.innerlottie{
+  height: fit-content;
+  margin-top: -5rem;
+  padding-top: 1rem;
+}
+
+.innersecondline{
+  text-align: center;
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #ff6201;
+  margin-top: -5rem;
+  
+}
+
+
+/* CSS */
+.delete-btn {
+  position: relative;     /* establishes stacking context without moving it */
+  z-index: 9999;          /* floats above everything else in its container */
+  
+  display: inline-flex;   /* icon + text sit in one line */
+  align-items: center;
+  gap: 0.3rem;            /* space between icon and text */
+  
+  top: -2.5rem;
+  left: 13.5rem;
+
+  background: transparent;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.25rem;
+
+
+  outline: none;          /* remove default focus outline */
+  border: none;           /* no border on focus */
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+  box-shadow: none;       /* remove any focus shadow if present */
+  
+ 
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* ensure clicks go to the button */
+.delete-btn i,
+.delete-btn .delete-text {
+  pointer-events: none;
+}
+
+/* hover & focus feedback */
+.delete-btn:hover {
+  background: rgba(255, 0, 0, 0.1);
+}
+
+.delete-btn:focus {
+  outline: none;          /* remove default focus outline */
+  border: none;           /* no border on focus */
+  background-color: white;
+ 
+  border-radius: 10px;
+  box-shadow: none;       /* remove any focus shadow if present */
+  color: red;             /* icon + text will be red */
+}
+
+
+
+
+
+
+
