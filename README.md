@@ -36,7 +36,7 @@ It includes **real-time search, product categorization, and professional PDF rep
 ## 🖼️ Screenshots  
 
 ### Dashboard – Product Listing  
-![Dashboard Screenshot](./screenshots/product-listing.png)  
+![Dashboard Screenshot](./product-listing.png)  
 
 ### Add Product Form with Validation  
 ![Add Product Screenshot](./screenshots/add-product-form-validation1.png)  
