@@ -34,24 +34,25 @@ It includes **real-time search, product categorization, and professional PDF rep
 ## 🖼️ Screenshots  
 
 ### Dashboard – Product Listing  
-![Dashboard Screenshot](./screenshots/Add Product Form with Validation1.png)  
+![Dashboard Screenshot](./screenshots/Product%20Listing.png)  
 
 ### Add Product Form with Validation  
 ![Add Product Screenshot](./screenshots/Add%20Product%20Form%20with%20Validation1.png)  
 ![Add Product Screenshot](./screenshots/Add%20Product%20Form%20with%20Validation2.png)  
 
 ### Edit & Delete Product  
-![Edit Product Screenshot](./screenshots/Edit%20&%20Delete%20Product%20.png)  
+![Edit Product Screenshot](./screenshots/Edit%20%26%20Delete%20Product%20.png)  
 
 ### Real-time Search Results  
-![Search Screenshot](./screenshots/Real-time%20Search%20Results%20.png)  
+![Search Screenshot](./screenshots/Real-time%20Search%20Results.png)  
 
 ### PDF Product Catalog  
-![PDF Catalog Screenshot](./screenshots/PDF%20Product%20Catalog%20.png)  
- 
+![PDF Catalog Screenshot](./screenshots/PDF%20Product%20Catalog.png)  
+
 ## 📄 Sample Report  
 
-![PDF Catalog Preview](./screenshots/PDF%20Product%20Catalog.png)  
+➡️ [Click here to view the full Product Catalog PDF](./docs/product-catalog.pdf)
+
 
 ➡️ [Click here to view the full Product Catalog PDF](./docs/product-catalog.pdf)
 
