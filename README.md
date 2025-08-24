@@ -43,13 +43,13 @@ It includes **real-time search, product categorization, and professional PDF rep
 ![Add Product Screenshot](./add-product-form-validation2.png)  
 
 ### Edit & Delete Product  
-![Edit Product Screenshot](.edit-delete-product.png)  
+![Edit Product Screenshot](./edit-delete-product.png)  
 
 ### Real-time Search Results  
-![Search Screenshot](.real-time-search-results.png)  
+![Search Screenshot](./real-time-search-results.png)  
 
 ### PDF Product Catalog  
-![PDF Catalog Screenshot](.pdf-product-catalog.png)  
+![PDF Catalog Screenshot](./pdf-product-catalog.png)  
 
 
 ## 📄 Sample Report  
