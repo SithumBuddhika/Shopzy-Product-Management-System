@@ -33,6 +33,8 @@ It includes **real-time search, product categorization, and professional PDF rep
 
 ## 🖼️ Screenshots  
 
+## 🖼️ Screenshots  
+
 ### Dashboard – Product Listing  
 ![Dashboard Screenshot](./screenshots/product-listing.png)  
 
