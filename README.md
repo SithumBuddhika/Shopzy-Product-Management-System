@@ -49,6 +49,11 @@ It includes **real-time search, product categorization, and professional PDF rep
 ### PDF Product Catalog  
 ![PDF Catalog Screenshot](./screenshots/PDF%20Product%20Catalog%20.png)  
  
+## 📄 Sample Report  
+
+![PDF Catalog Preview](./screenshots/PDF%20Product%20Catalog.png)  
+
+➡️ [Click here to view the full Product Catalog PDF](./docs/product-catalog.pdf)
 
 ---
 
