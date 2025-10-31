@@ -93,7 +93,7 @@ npm start
 
 ````
 📦 Project Structure
----
+````
 Shopzy/
 │── backend/          # Node.js + Express server
 │   ├── models/       # MongoDB models
@@ -107,7 +107,7 @@ Shopzy/
 │   └── src/assets/ 
 │
 └── README.md
----
+````
 
 📄 Report Example
 
