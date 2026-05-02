@@ -16,38 +16,34 @@ body::-webkit-scrollbar {
 
 /* Main Container */
 .maincontainer {
-  height: calc(100vh - 60px);
-  width: auto;
+  height: calc(100vh - 80px); /* Account for top-bar */
+  width: calc(100vw - 240px);
   overflow-y: auto;
   overflow-x: hidden;
-  margin-top: 60px;
+  margin-top: 80px; /* Position below top-bar */
   margin-left: 215px;
   padding: 0;
   display: flex;
   flex-direction: column;
   position: relative;
-  z-index: 1000;
+  z-index: 1; 
   background-color: #ebebeb;
-  transition: margin-left 0.3s ease;
 }
 
 /* Top Switch Section */
 .switch {
-  width: 100%;
-  height: auto;
+  width: 100vw;
+  height: 2rem;
   display: flex;
   border-bottom: 1px solid #c4c2c2;
-  flex-wrap: wrap;
 }
 
 .s1main,
 .s2main {
-  flex: 1;
-  min-width: 150px;
+  width: 43vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem 0;
 }
 
 /* Default styling for switch tabs */
@@ -111,22 +107,20 @@ body::-webkit-scrollbar {
 .slots {
   display: flex;
   flex-direction: row;
-  column-gap: 3rem;
+  column-gap: 2.5rem;
   align-content: center;
   width: 100%;
-  height: auto;
-  min-height: 7rem;
-  overflow-x: auto; /* Allows horizontal scrolling */
+  height: 18vh;
+  overflow-x: auto;
   overflow-y: hidden;
-  white-space: nowrap; /* Keeps cards in one row */
+  white-space: nowrap;
   scroll-behavior: smooth;
-  margin-left: 0;
-  padding: 0.5rem 4rem;
+  padding: 0.5rem 5rem;
   box-sizing: border-box;
 
   /* Hide scrollbar */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .slots::-webkit-scrollbar {
@@ -135,19 +129,28 @@ body::-webkit-scrollbar {
 
 /* Card Styling */
 .card {
-  border: 2px solid white;
-  width: 6.6rem;
-  height: 6.6rem;
-  border-radius: 15px;
-  flex: 0 0 auto; /* Prevents cards from shrinking */
+  border: 1px solid #eee;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 12px;
+  flex: 0 0 auto;
   background-color: white;
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
+  padding: 1rem 0.5rem;
   cursor: pointer;
   align-items: center;
+  justify-content: center;
   color: black;
   margin-bottom: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+  border-color: #ff6201;
 }
 
 .card:focus,
@@ -167,13 +170,17 @@ body::-webkit-scrollbar {
 }
 
 .title {
-  height: 1rem;
-  font-size: 8px;
+  height: auto;
+  font-size: 0.65rem;
   text-align: center;
   align-content: center;
-  margin-bottom: 0.1rem;
-  margin-top: 0.3rem;
-  letter-spacing: -0.15px;
+  margin-top: 0.8rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: #222;
+  width: 90%;
+  word-wrap: break-word;
 }
 
 /* Scroll Buttons - Smaller, Modern, and Clean */
@@ -206,11 +213,11 @@ body::-webkit-scrollbar {
 }
 
 .scroll-left {
-  left: 15px;
+  left: 10px;
 }
 
 .scroll-right {
-  right: 15px;
+  right: 10px;
 }
 
 .scroll-left i,
@@ -222,18 +229,17 @@ body::-webkit-scrollbar {
 }
 
 .full_view {
-  width: 100%;
-  height: auto;
+  width: 86vw;
+  height: 56vh;
   display: flex;
   flex-direction: row;
-  box-sizing: border-box;
-  padding-bottom: 2rem;
 }
 
 .changecont {
-  height: auto;
-  min-height: 50vh;
-  flex: 1;
+  /* border: 2px solid #ff6201; */
+  /* background-color: #ff6201; */
+  height: 52.5vh;
+  width: 60vw;
   margin-top: 0.5rem;
   margin-left: 2vw;
   border-top-left-radius: 0.5rem;
@@ -243,13 +249,14 @@ body::-webkit-scrollbar {
 }
 
 .fixedcont {
-  height: fit-content;
-  width: 300px;
-  margin: 0.5rem 2vw 0 1vw;
+  /* border: 2px solid green; */
+  height: 51vh;
+  width: 22vw;
+  margin-top: 0.5rem;
   background-color: white;
   border-radius: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  padding-bottom: 1rem;
+  /* margin-top: 20px; */
 }
 
 /* New styles for slider and container switching */
@@ -799,124 +806,256 @@ body::-webkit-scrollbar {
   flex-wrap: wrap;
 }
 
-/* RESPONSIVE OVERRIDES */
+/* RESPONSIVE MEDIA QUERIES */
 
 /* Tablet View */
 @media (max-width: 1199px) {
+    .top-bar {
+        left: 0 !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+        border-radius: 0 !important;
+        padding: 0 1.2rem !important;
+    }
+    
+    .sidebar {
+        left: -220px !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        height: 100vh !important;
+        z-index: 1005 !important;
+    }
+    
+    .sidebar.open {
+        left: 0 !important;
+    }
+
+    .sidebar-overlay {
+        display: block !important;
+    }
+    
+    .hamburger {
+        display: block !important;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
   .maincontainer {
     margin-left: 0;
     width: 100%;
+    height: calc(100vh - 60px);
+    margin-top: 60px;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   
   .full_view {
     flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding-bottom: 2rem;
   }
   
   .fixedcont {
     width: 90%;
+    height: auto;
     margin: 2rem auto;
+    padding-bottom: 1rem;
   }
   
   .changecont {
     width: 100%;
+    height: auto;
     margin-left: 0;
+  }
+
+  .switch {
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+  }
+
+  .s1main, .s2main {
+    flex: 1;
+    min-width: 150px;
+    padding: 0.5rem 0;
+    width: auto;
+  }
+
+  .slots {
+    width: 100%;
+    margin-left: 0;
+    padding: 0.5rem 4rem;
+    box-sizing: border-box;
+    height: auto;
+    min-height: 7rem;
   }
 }
 
 /* Mobile View */
 @media (max-width: 767px) {
+  .maincontainer {
+    margin-left: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 60px !important;
+    overflow-y: visible !important;
+    overflow-x: hidden !important;
+  }
+  
+  .full_view {
+    flex-direction: column !important;
+    width: 100% !important;
+    height: auto !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  .fixedcont {
+    width: 95% !important;
+    height: auto !important;
+    margin: 2rem auto !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  .changecont {
+    width: 100% !important;
+    height: auto !important;
+    margin-left: 0 !important;
+  }
+
+  .switch {
+    width: 100% !important;
+    height: auto !important;
+    flex-wrap: wrap !important;
+  }
+
+  .s1main, .s2main {
+    flex: 1 !important;
+    min-width: 150px !important;
+    padding: 0.5rem 0 !important;
+    width: auto !important;
+  }
+
+  .slots {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding: 0.5rem 1rem !important;
+    box-sizing: border-box !important;
+    height: auto !important;
+    min-height: 7rem !important;
+  }
+
+  .breadcrumbs, .heading {
+    width: 100% !important;
+    padding-left: 1rem !important;
+  }
+
   .heading-with-button {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1rem;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
   }
   
   .search-function {
-    width: 100%;
+    width: 100% !important;
   }
   
   .search-input {
-    width: 70%;
+    width: calc(100% - 100px) !important;
   }
   
   .top-buttons {
-    width: 100%;
-    justify-content: space-between;
+    width: 100% !important;
+    justify-content: space-between !important;
+    display: flex !important;
+    gap: 0.5rem !important;
   }
   
   .scards {
     width: 100% !important;
-    height: auto;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    height: auto !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
   }
   
   .left-section {
-    width: 100%;
-    margin-bottom: 1rem;
+    width: 100% !important;
+    margin-bottom: 1rem !important;
   }
   
   .right-section {
-    width: 100%;
-    margin-left: 0;
-    height: auto;
-    align-items: center;
+    width: 100% !important;
+    margin-left: 0 !important;
+    height: auto !important;
+    align-items: center !important;
   }
   
   .card-edit-button {
-    width: 100%;
-    margin-top: 1rem;
+    width: 100% !important;
+    margin-top: 1rem !important;
   }
   
   .card-price, .card-name, .card-weight {
-    text-align: center;
+    text-align: center !important;
   }
   
   .card-badges {
-    justify-content: center;
+    justify-content: center !important;
   }
   
   .vehicle-info {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: column !important;
+    align-items: flex-start !important;
   }
   
   .update-button {
-    margin-left: 0;
-    margin-top: 1rem;
-    width: 100%;
+    margin-left: 0 !important;
+    margin-top: 1rem !important;
+    width: 100% !important;
   }
   
   .vehicle-type-tabs {
-    overflow-x: auto;
-    padding-bottom: 1rem;
-    width: 100%;
-    justify-content: flex-start;
+    overflow-x: auto !important;
+    padding-bottom: 1rem !important;
+    width: 100% !important;
+    justify-content: flex-start !important;
   }
   
   .price-input-wrapper {
-    width: 90%;
+    width: 95% !important;
+    margin-left: 2.5% !important;
   }
   
   .fixedtop {
-    flex-direction: column;
-    align-items: center;
-    margin-top: -1rem;
-    text-align: center;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+    text-align: center !important;
   }
   
   .fixedtopoinner {
-    align-items: center;
+    align-items: center !important;
   }
   
   .fixedcont-lastEdited {
-    justify-content: center;
+    justify-content: center !important;
+    margin-top: 0.5rem !important;
   }
 
-  .slots {
-    padding: 0.5rem 1rem;
+  .slider {
+    width: 200% !important;
+  }
+
+  .switchcontainer1, .switchcontainer2 {
+    width: 50% !important;
   }
 }
 
@@ -939,11 +1078,11 @@ body::-webkit-scrollbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 99%;
-  padding: 1rem 0.5rem 0 2rem;
-  margin-top: -40px;
-  height: 5.3rem;
-  
+  width: 100%;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+  height: auto;
+  min-height: 5.3rem;
 }
 
 /* Heading Text */
@@ -954,13 +1093,11 @@ body::-webkit-scrollbar {
   margin: 0;
 }
 
-.top-buttons{
+.top-buttons {
   display: flex;
   flex-direction: row;
-  font-size: 0.5rem;
-  gap: 0.5rem;
-  padding-left: 5rem;
-  /* border: 2px solid black; */
+  gap: 1rem;
+  align-items: center;
 }
 
 /* Final Add Product Button Styling */
@@ -1041,23 +1178,31 @@ body::-webkit-scrollbar {
 .search-function {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  /* margin-right: 2rem; */
-  margin-right: -180px;
-  margin-top: -22px;
+  flex: 1;
+  justify-content: center;
+  margin: 0 2rem;
+  height: 38px;
+  gap: 0.8rem;
 }
 
 .search-input {
-  padding: 0.6rem 1rem 0.6rem 2.2rem; /* Space for icon inside */
+  padding: 0 1rem 0 2.8rem; 
   border-radius: 2rem;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   outline: none;
-  font-size: 0.95rem;
-  color: #555;
-  background: #fff url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat 10px center;
-  background-size: 18px 18px;
-  width: 250px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  font-size: 0.9rem;
+  color: #333;
+  background: #fff url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat 14px center;
+  background-size: 14px 14px;
+  width: 320px;
+  height: 100%;
+  box-sizing: border-box;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  border-color: #ff6201;
 }
 
 .search-input::placeholder {
@@ -1067,20 +1212,21 @@ body::-webkit-scrollbar {
 }
 
 .search-button {
-  /* background-color: #ff6201;
-  color: white;
-  border: none; */
-  padding: 0.6rem 1.3rem;
+  padding: 0 1.8rem;
   border-radius: 2rem;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
-  transition: background-color 0.3s ease;
-  margin-top: 33px;
-  background-color: white;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  background-color: transparent;
   color: #ff6201;
   border: 2px solid #ff6201;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 .search-button:hover {
@@ -1188,3 +1334,11 @@ body::-webkit-scrollbar {
 
 
 
+
+.headingchange {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 1.5rem 0 1rem 2.5rem;
+  color: #111;
+  letter-spacing: -0.5px;
+}

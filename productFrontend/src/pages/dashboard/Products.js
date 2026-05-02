@@ -1146,18 +1146,7 @@ const Product = () => {
                       </div>
 
                       <div className="title">
-                        {(() => {
-                          const parts = cat.name.split(/\s+/);
-                          const half = Math.ceil(parts.length / 2);
-
-                          return (
-                            <>
-                              {parts.slice(0, half).join(" ")}
-                              <br />
-                              {parts.slice(half).join(" ")}
-                            </>
-                          );
-                        })()}
+                        {cat.name}
                       </div>
                     </button>
                   ))}

@@ -29,7 +29,7 @@ body {
     top: 0;
     left: 0;
     height: 95vh; /* Full height */
-    z-index: 1005; /* Higher than top-bar and overlay */
+    z-index: 1000; /* Lower than top-bar */
     transition: left 0.3s ease;
 }
 
@@ -41,6 +41,7 @@ body {
     height: 100vh;
     background: rgba(0, 0, 0, 0.5);
     z-index: 1004;
+    display: none; /* Hidden by default */
 }
 
 /* SIDEBAR HEADER */
@@ -108,7 +109,7 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 100%; /* Will be constrained by sidebar margin if needed, but flex:1 handles it */
 }
 
 
@@ -117,16 +118,17 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1.2rem;
+    padding-left: 1.2rem;
+    margin-top: 1rem;
     border-bottom: 1px solid #c4c2c2;
     background-color: #fff;
+    border-radius: 0.5rem;
     position: fixed; /* Fix it on top */
     top: 0;
-    left: 215px; /* Adjust according to your sidebar width */
-    right: 0;
+    left: 215px; /* Aligned with maincontainer */
+    width: calc(100% - 240px); /* Adjust to leave some margin on the right */
     height: 60px; /* Adjust height */
     z-index: 1002; /* Higher than other elements */
-    box-sizing: border-box;
 }
 
 .hamburger {
@@ -270,6 +272,10 @@ body {
     .top-bar {
         left: 0;
         width: 100%;
+        margin-left: 0;
+        margin-top: 0;
+        border-radius: 0;
+        padding: 0 1.2rem;
     }
     
     .sidebar {
@@ -277,10 +283,15 @@ body {
         margin: 0;
         border-radius: 0;
         height: 100vh;
+        z-index: 1005;
     }
     
     .sidebar.open {
         left: 0;
+    }
+
+    .sidebar-overlay {
+        display: block;
     }
     
     .hamburger {
@@ -289,6 +300,7 @@ body {
 
     .main-content {
         margin-left: 0;
+        width: 100%;
     }
 }
 
