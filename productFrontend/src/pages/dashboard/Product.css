@@ -16,33 +16,38 @@ body::-webkit-scrollbar {
 
 /* Main Container */
 .maincontainer {
-  height: 89vh;
-  width: 86vw;
-  overflow: hidden;
-  margin-top: 0rem; /* Reduce this if needed */
+  height: calc(100vh - 60px);
+  width: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 60px;
   margin-left: 215px;
   padding: 0;
   display: flex;
   flex-direction: column;
   position: relative;
-  z-index: 1000; /* Lower than top-bar */
+  z-index: 1000;
   background-color: #ebebeb;
+  transition: margin-left 0.3s ease;
 }
 
 /* Top Switch Section */
 .switch {
-  width: 100vw;
-  height: 2rem;
+  width: 100%;
+  height: auto;
   display: flex;
   border-bottom: 1px solid #c4c2c2;
+  flex-wrap: wrap;
 }
 
 .s1main,
 .s2main {
-  width: 43vw;
+  flex: 1;
+  min-width: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0.5rem 0;
 }
 
 /* Default styling for switch tabs */
@@ -74,22 +79,22 @@ body::-webkit-scrollbar {
 
 /* Breadcrumbs */
 .breadcrumbs {
-  width: 100vw;
-  height: 4vh;
+  width: 100%;
+  height: auto;
   margin-top: 0.5rem;
-  align-content: center;
   font-size: x-small;
   padding-left: 2rem;
+  box-sizing: border-box;
 }
 
 /* Page Heading */
 .heading {
-  width: 100vw;
-  height: 4vh;
+  width: 100%;
+  height: auto;
   font-size: larger;
-  align-content: center;
-  padding-left: 2rem;
+  padding: 0.5rem 2rem;
   font-weight: bold;
+  box-sizing: border-box;
 }
 
 /* Slots Container - Holds the scrolling cards and buttons */
@@ -108,15 +113,16 @@ body::-webkit-scrollbar {
   flex-direction: row;
   column-gap: 3rem;
   align-content: center;
-  width: 77.4vw;
-  height: 17vh;
+  width: 100%;
+  height: auto;
+  min-height: 7rem;
   overflow-x: auto; /* Allows horizontal scrolling */
   overflow-y: hidden;
   white-space: nowrap; /* Keeps cards in one row */
   scroll-behavior: smooth;
-  margin-left: 4.5rem;
-  padding-right: 0.2rem;
-  padding-left: 0.5rem;
+  margin-left: 0;
+  padding: 0.5rem 4rem;
+  box-sizing: border-box;
 
   /* Hide scrollbar */
   -ms-overflow-style: none; /* IE and Edge */
@@ -216,17 +222,18 @@ body::-webkit-scrollbar {
 }
 
 .full_view {
-  width: 86vw;
-  height: 56vh;
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: row;
+  box-sizing: border-box;
+  padding-bottom: 2rem;
 }
 
 .changecont {
-  /* border: 2px solid #ff6201; */
-  /* background-color: #ff6201; */
-  height: 52.5vh;
-  width: 60vw;
+  height: auto;
+  min-height: 50vh;
+  flex: 1;
   margin-top: 0.5rem;
   margin-left: 2vw;
   border-top-left-radius: 0.5rem;
@@ -236,14 +243,13 @@ body::-webkit-scrollbar {
 }
 
 .fixedcont {
-  /* border: 2px solid green; */
-  height: 51vh;
-  width: 22vw;
-  margin-top: 0.5rem;
+  height: fit-content;
+  width: 300px;
+  margin: 0.5rem 2vw 0 1vw;
   background-color: white;
   border-radius: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  /* margin-top: 20px; */
+  padding-bottom: 1rem;
 }
 
 /* New styles for slider and container switching */
@@ -788,11 +794,142 @@ body::-webkit-scrollbar {
 
 
 .fleettopcontrol{
- 
   display: flex;
   flex-direction: row;
-  
+  flex-wrap: wrap;
+}
 
+/* RESPONSIVE OVERRIDES */
+
+/* Tablet View */
+@media (max-width: 1199px) {
+  .maincontainer {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .full_view {
+    flex-direction: column;
+  }
+  
+  .fixedcont {
+    width: 90%;
+    margin: 2rem auto;
+  }
+  
+  .changecont {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* Mobile View */
+@media (max-width: 767px) {
+  .heading-with-button {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .search-function {
+    width: 100%;
+  }
+  
+  .search-input {
+    width: 70%;
+  }
+  
+  .top-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .scards {
+    width: 100% !important;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .left-section {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .right-section {
+    width: 100%;
+    margin-left: 0;
+    height: auto;
+    align-items: center;
+  }
+  
+  .card-edit-button {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  
+  .card-price, .card-name, .card-weight {
+    text-align: center;
+  }
+  
+  .card-badges {
+    justify-content: center;
+  }
+  
+  .vehicle-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .update-button {
+    margin-left: 0;
+    margin-top: 1rem;
+    width: 100%;
+  }
+  
+  .vehicle-type-tabs {
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .price-input-wrapper {
+    width: 90%;
+  }
+  
+  .fixedtop {
+    flex-direction: column;
+    align-items: center;
+    margin-top: -1rem;
+    text-align: center;
+  }
+  
+  .fixedtopoinner {
+    align-items: center;
+  }
+  
+  .fixedcont-lastEdited {
+    justify-content: center;
+  }
+
+  .slots {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Small Phone View */
+@media (max-width: 480px) {
+  .top-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .add-product-button, .download-report-button {
+    width: 100%;
+  }
 }
 
 /*################################*/

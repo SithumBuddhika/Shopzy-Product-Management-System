@@ -157,6 +157,8 @@ const DashboardMenu = () => {
   const [activeItem, setActiveItem] = useState(null);
   const [openSubmenu, setOpenSubmenu] = useState(null);
 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   // ⏱ keep a live date/time (updates every minute)
   const [now, setNow] = useState(new Date());
   useEffect(() => {
@@ -186,6 +188,9 @@ const DashboardMenu = () => {
   const handleMenuClick = (event, item) => {
     event.preventDefault();
     setActiveItem(item);
+    if (window.innerWidth <= 767) {
+      setIsSidebarOpen(false);
+    }
   };
 
   const handleSubmenuToggle = (event, submenuName) => {
@@ -195,8 +200,13 @@ const DashboardMenu = () => {
 
   return (
     <div className="dashboard-container">
+      {/* Mobile Overlay */}
+      {isSidebarOpen && (
+        <div className="sidebar-overlay" onClick={() => setIsSidebarOpen(false)}></div>
+      )}
+
       {/* Sidebar */}
-      <div className="sidebar">
+      <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <div className="sidebar-header">
           <div className="brand-name">
             <img src={logo} alt="logo" width="166" height="auto" />
@@ -208,7 +218,6 @@ const DashboardMenu = () => {
           <ul>
             <li>
               <Link to="/" onClick={(e) => handleMenuClick(e, "/")}>
-                {/* fix class -> className */}
                 <i className="fi fi-rr-dashboard"></i> Dashboard
               </Link>
             </li>
@@ -278,6 +287,9 @@ const DashboardMenu = () => {
       {/* Main Content */}
       <div className="main-content">
         <div className="top-bar">
+          <div className="hamburger" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+            <i className="fi fi-rr-menu-burger"></i>
+          </div>
           <div className="greeting">
             <div className="greet1">Hello, Sithum</div>
             <div className="greet2">Cheers to another day with Shopzy</div>

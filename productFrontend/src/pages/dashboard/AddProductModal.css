@@ -21,17 +21,18 @@
 ---------------------------- */
 .modal-content {
   position: relative;
-  overflow-x: visible;
+  overflow-x: hidden;
   width: 900px;
+  max-width: 95vw;
   height: 540px;
+  max-height: 90vh;
   background-color: #fff;
   border-radius: 25px;
   padding: 1.5rem 2rem;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  margin-left: 0rem;
-  margin-top: 0rem;
+  margin: auto;
 }
 
 /* ----------------------------
@@ -173,7 +174,7 @@
   display: flex;
   gap: 1rem;
   align-items: flex-end;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 .input-with-icon {
   display: flex;
@@ -194,7 +195,7 @@
   flex-direction: column;
   font-size: 0.75rem;
   height: 65px;
-  width: 380px;
+  width: 100%;
 }
 .input-wrapper.full {
   border: 1px solid #ccc;
@@ -206,7 +207,7 @@
   min-height: 65px;
   height: auto;
   padding-bottom: 0.5rem;
-  width: 800px;
+  width: 100%;
 }
 .input-field-group.full {
   display: flex;
@@ -331,6 +332,7 @@
 .input-field-group {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 /* if you want to target only availability */
@@ -343,5 +345,52 @@
 .error-text {
   margin-top: 0.25rem;
   margin-left: 0; /* align under the radios, not the label */
+}
+
+/* RESPONSIVE MODAL */
+@media (max-width: 767px) {
+  .modal-content {
+    padding: 1.5rem 1rem;
+    height: auto;
+    max-height: 95vh;
+  }
+  
+  .modal-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .modal-title {
+    margin-top: 0;
+    font-size: 1.2rem;
+  }
+  
+  .modal-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .category-scroll-wrapper {
+    overflow-x: auto;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .input-with-icon-last-row {
+    margin-left: 0;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .availability-row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    width: 100%;
+  }
 }
 

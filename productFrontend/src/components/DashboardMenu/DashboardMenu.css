@@ -29,7 +29,18 @@ body {
     top: 0;
     left: 0;
     height: 95vh; /* Full height */
-    z-index: 1000; /* Lower than top-bar */
+    z-index: 1005; /* Higher than top-bar and overlay */
+    transition: left 0.3s ease;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1004;
 }
 
 /* SIDEBAR HEADER */
@@ -94,13 +105,10 @@ body {
 
 /* MAIN CONTENT */
 .main-content {
-    
     flex: 1;
     display: flex;
     flex-direction: column;
-    width: 80vw;
-    height: 13vh;
-    
+    width: 100%;
 }
 
 
@@ -109,18 +117,24 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 1.2rem;
-    margin-left: 2rem;
-    margin-top: 1rem;
+    padding: 0 1.2rem;
     border-bottom: 1px solid #c4c2c2;
     background-color: #fff;
-    border-radius: 0.5rem;
     position: fixed; /* Fix it on top */
     top: 0;
-    left: 200px; /* Adjust according to your sidebar width */
-    width: 80rem; /* Full width minus sidebar */
+    left: 215px; /* Adjust according to your sidebar width */
+    right: 0;
     height: 60px; /* Adjust height */
     z-index: 1002; /* Higher than other elements */
+    box-sizing: border-box;
+}
+
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ff6201;
+    margin-right: 1rem;
 }
 
 
@@ -243,8 +257,67 @@ body {
 .infobreak{
     display: flex;
     flex-direction: column;
-    align-items: right;
+    align-items: flex-end;
     text-align: right;
     padding-left: 1rem;
     padding-right: 0.5rem;
+}
+
+/* RESPONSIVE MEDIA QUERIES */
+
+/* Tablet View */
+@media (max-width: 1199px) {
+    .top-bar {
+        left: 0;
+        width: 100%;
+    }
+    
+    .sidebar {
+        left: -220px;
+        margin: 0;
+        border-radius: 0;
+        height: 100vh;
+    }
+    
+    .sidebar.open {
+        left: 0;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+/* Mobile View */
+@media (max-width: 767px) {
+    .top-right .date {
+        display: none; /* Hide date on mobile to save space */
+    }
+    
+    .greeting .greet2 {
+        display: none; /* Hide secondary greeting on mobile */
+    }
+    
+    .user-name {
+        font-size: 0.8rem;
+    }
+    
+    .top-bar {
+        padding: 0 0.8rem;
+    }
+    
+    .top-right {
+        gap: 0.5rem;
+    }
+}
+
+/* Small Phone View */
+@media (max-width: 480px) {
+    .user-info .infobreak {
+        display: none; /* Hide name text on very small screens */
+    }
 }
