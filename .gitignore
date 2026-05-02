@@ -1,1 +1,26 @@
-replace_rules.txt 
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+backend/logs/
+*.log
+
+# Temporary files
+replace_rules.txt
+**/replace_rules.txt
+
+# Build files
+dist/
+build/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
