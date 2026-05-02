@@ -3,9 +3,8 @@ import "./Product.css"; // Ensure CSS file exists
 import DashboardMenu from "../../components/DashboardMenu/DashboardMenu";
 import AddProductModal from "./AddProductModal"; // adjust path if needed
 import { Link, useNavigate } from "react-router-dom";
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import '@flaticon/flaticon-uicons/css/all/all.css';
-
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import "@flaticon/flaticon-uicons/css/all/all.css";
 
 // Existing images
 import logoVeg from "../../components/vegetable.png";
@@ -18,8 +17,12 @@ import {
   updateProduct,
   deleteProduct,
   toggleProductAvailability,
-  getSearchSuggestions  // <-- New function for search suggestions
+  getSearchSuggestions, // <-- New function for search suggestions
 } from "./productService";
+
+const BACKEND_URL = (
+  process.env.REACT_APP_API_URL || "http://localhost:8090"
+).replace(/\/$/, "");
 
 // Helper function to compute relative time (e.g., "5m ago")
 const getTimeAgo = (dateString) => {
@@ -59,7 +62,7 @@ const Product = () => {
   const [editedDetails, setEditedDetails] = useState({
     priceBeforeDiscount: "",
     priceAfterDiscount: "",
-    availability: ""
+    availability: "",
   });
   const [showModal, setShowModal] = useState(false);
 
@@ -91,7 +94,7 @@ const Product = () => {
         const params = {
           category: activeCategory._id,
           // Optionally pass the search term to filter products
-          search: searchTerm.trim() !== "" ? searchTerm : undefined
+          search: searchTerm.trim() !== "" ? searchTerm : undefined,
         };
         const result = await listProducts(params);
         setScards(result.data);
@@ -123,14 +126,15 @@ const Product = () => {
 
   // Handle delete button click
   const handleDelete = async (e) => {
-    e.stopPropagation();      // prevent card click
+    e.stopPropagation(); // prevent card click
     if (!selectedCard) return;
-    if (!window.confirm("Are you sure you want to delete this product?")) return;
+    if (!window.confirm("Are you sure you want to delete this product?"))
+      return;
 
     try {
       await deleteProduct(selectedCard._id);
       // remove from list
-      setScards(prev => prev.filter(c => c._id !== selectedCard._id));
+      setScards((prev) => prev.filter((c) => c._id !== selectedCard._id));
       // clear the editor
       setSelectedCard(null);
       alert("Product deleted successfully.");
@@ -143,14 +147,16 @@ const Product = () => {
   // At the top of your Product component, alongside your other handlers:
   const handleDownloadPdf = async () => {
     try {
-      const res = await fetch("http://localhost:8090/api/catalog/products/pdf", {
+      const res = await fetch(`${BACKEND_URL}/api/catalog/products/pdf`, {
         method: "GET",
       });
       if (!res.ok) throw new Error("Network response was not ok");
 
       // Turn response into a blob, then trigger download
       const blob = await res.blob();
-      const url = window.URL.createObjectURL(new Blob([blob], { type: "application/pdf" }));
+      const url = window.URL.createObjectURL(
+        new Blob([blob], { type: "application/pdf" }),
+      );
       const link = document.createElement("a");
       link.href = url;
       link.setAttribute("download", "product-catalog.pdf");
@@ -170,7 +176,7 @@ const Product = () => {
     setEditedDetails({
       priceBeforeDiscount: clickedCard.priceBeforeDiscount || "",
       priceAfterDiscount: clickedCard.priceAfterDiscount || "",
-      availability: clickedCard.availability ? "Available" : "Unavailable"
+      availability: clickedCard.availability ? "Available" : "Unavailable",
     });
   };
 
@@ -183,7 +189,10 @@ const Product = () => {
   // Handle the edit details button click
   const handleEditDetails = async () => {
     if (!selectedCard) return;
-    if (Number(editedDetails.priceAfterDiscount) > Number(editedDetails.priceBeforeDiscount)) {
+    if (
+      Number(editedDetails.priceAfterDiscount) >
+      Number(editedDetails.priceBeforeDiscount)
+    ) {
       alert("Discounted price cannot exceed the original price.");
       return;
     }
@@ -191,7 +200,7 @@ const Product = () => {
       const updateData = {
         priceBeforeDiscount: editedDetails.priceBeforeDiscount,
         priceAfterDiscount: editedDetails.priceAfterDiscount,
-        availability: editedDetails.availability === "Available"
+        availability: editedDetails.availability === "Available",
       };
       const response = await updateProduct(selectedCard._id, updateData);
       // Assume the response includes the new updatedAt timestamp
@@ -200,10 +209,16 @@ const Product = () => {
       alert(response.message);
       setScards((prevCards) =>
         prevCards.map((card) =>
-          card._id === selectedCard._id ? { ...card, ...updateData, updatedAt: newUpdatedAt } : card
-        )
+          card._id === selectedCard._id
+            ? { ...card, ...updateData, updatedAt: newUpdatedAt }
+            : card,
+        ),
       );
-      setSelectedCard((prev) => ({ ...prev, ...updateData, updatedAt: newUpdatedAt }));
+      setSelectedCard((prev) => ({
+        ...prev,
+        ...updateData,
+        updatedAt: newUpdatedAt,
+      }));
     } catch (error) {
       console.error("Error updating product:", error);
       alert("Error updating product. Please try again.");
@@ -213,10 +228,10 @@ const Product = () => {
   const discountPercent = (product) =>
     product.priceBeforeDiscount
       ? Math.round(
-        ((product.priceBeforeDiscount - product.priceAfterDiscount) /
-          product.priceBeforeDiscount) *
-        100
-      )
+          ((product.priceBeforeDiscount - product.priceAfterDiscount) /
+            product.priceBeforeDiscount) *
+            100,
+        )
       : 0;
 
   // Handle explicit search button click if needed
@@ -226,9 +241,6 @@ const Product = () => {
     console.log("Searching for:", searchTerm);
   };
 
-
-
-
   return (
     <div className="product-management">
       {/* Sidebar */}
@@ -237,14 +249,13 @@ const Product = () => {
 
       {/* Main Container */}
       <div className="maincontainer">
-      
         {/* Switch Tabs */}
         <div className="switch">
           <div
             className={`s1main ${activeContainer === "switchcontainer1" ? "active" : ""}`}
             onClick={() => {
               setActiveContainer("switchcontainer1");
-              navigate('/dashboard-shopowner/productManagement');
+              navigate("/dashboard-shopowner/productManagement");
             }}
           >
             <div className="s1sub">Product Management</div>
@@ -252,7 +263,7 @@ const Product = () => {
           <div
             className={`s2main ${activeContainer === "switchcontainer2" ? "active" : ""}`}
             onClick={() => {
-              navigate('/dashboard-shopowner/fleetManagement');
+              navigate("/dashboard-shopowner/fleetManagement");
               setActiveContainer("switchcontainer2");
             }}
           >
@@ -264,7 +275,10 @@ const Product = () => {
         <div
           className="slider"
           style={{
-            transform: activeContainer === "switchcontainer1" ? "translateX(0%)" : "translateX(-50%)"
+            transform:
+              activeContainer === "switchcontainer1"
+                ? "translateX(0%)"
+                : "translateX(-50%)",
           }}
         >
           {/* Product Management Container */}
@@ -277,7 +291,9 @@ const Product = () => {
             {/* Category Section */}
             <div className="category">
               <div className="heading-with-button">
-                <h2 className="heading-title">All Products Available At GOCART Store</h2>
+                <h2 className="heading-title">
+                  All Products Available At GOCART Store
+                </h2>
                 {/* <button className="add-product-button" onClick={() => setShowModal(true)}>
                   <span className="plus-icon">+</span>
                   <span className="add-label">ADD PRODUCT</span>
@@ -311,9 +327,11 @@ const Product = () => {
                   )}
                 </div>
 
-
                 <div className="top-buttons">
-                  <button className="add-product-button" onClick={() => setShowModal(true)}>
+                  <button
+                    className="add-product-button"
+                    onClick={() => setShowModal(true)}
+                  >
                     <span className="plus-icon">+</span>
                     <span className="add-label">ADD PRODUCT</span>
                   </button>
@@ -326,14 +344,13 @@ const Product = () => {
                       <i
                         className="fi fi-ss-down-to-line"
                         style={{
-                          fontSize: '9px',
-                          display: 'inline-block',
-                          width: '1em',
-                          height: '1.2em',
-                          lineHeight: '1.2em',
+                          fontSize: "9px",
+                          display: "inline-block",
+                          width: "1em",
+                          height: "1.2em",
+                          lineHeight: "1.2em",
                         }}
                       />
-
                     </span>
                     <span className="add-label">View Inventory</span>
                   </button>
@@ -363,7 +380,12 @@ const Product = () => {
                       onClick={() => setActiveCategory(cat)}
                     >
                       <div className="img">
-                        <img src={cat.imageUrl || logoVeg} alt={cat.name} width="55px" height="55px" />
+                        <img
+                          src={cat.imageUrl || logoVeg}
+                          alt={cat.name}
+                          width="55px"
+                          height="55px"
+                        />
                       </div>
                       {/* <div className="title">{cat.name}</div> */}
                       <div className="title">
@@ -373,13 +395,13 @@ const Product = () => {
                           const half = Math.ceil(parts.length / 2);
                           return (
                             <>
-                              {parts.slice(0, half).join(" ")}<br />
+                              {parts.slice(0, half).join(" ")}
+                              <br />
                               {parts.slice(half).join(" ")}
                             </>
                           );
                         })()}
                       </div>
-
                     </button>
                   ))}
                 </div>
@@ -399,20 +421,29 @@ const Product = () => {
 
             {/* Full View Section */}
             <div className="full_view">
-
               {/* --- Product Cards --- */}
               <div className="changecont">
-                <div className="headingchange">{activeCategory ? activeCategory.name : ""}</div>
+                <div className="headingchange">
+                  {activeCategory ? activeCategory.name : ""}
+                </div>
                 <div className="scrollcards">
                   {scards.map((card, index) => (
-                    <div className="scards" key={card._id} onClick={() => handleScardClick(index)}>
+                    <div
+                      className="scards"
+                      key={card._id}
+                      onClick={() => handleScardClick(index)}
+                    >
                       <div className="left-section">
                         <div className="top-row">
                           <div className="toprowicon">
-                            <i className="fi fi-rr-clock" style={{ fontSize: "15px" }} />
+                            <i
+                              className="fi fi-rr-clock"
+                              style={{ fontSize: "15px" }}
+                            />
                           </div>
                           <span className="last-edited">
-                            &nbsp;Last Edited <br />{getTimeAgo(card.updatedAt)}
+                            &nbsp;Last Edited <br />
+                            {getTimeAgo(card.updatedAt)}
                           </span>
                         </div>
                         <img
@@ -428,11 +459,15 @@ const Product = () => {
                         />
                       </div>
                       <div className="right-section">
-                        <h2 className="card-price">LKR. {card.priceAfterDiscount}</h2>
+                        <h2 className="card-price">
+                          LKR. {card.priceAfterDiscount}
+                        </h2>
                         <p className="card-name">{card.name}</p>
                         <p className="card-weight">{card.weight || "500g"}</p>
                         <div className="card-badges">
-                          <span className="discount-badge">{discountPercent(card)}%</span>
+                          <span className="discount-badge">
+                            {discountPercent(card)}%
+                          </span>
                           <span className="availability-badge">
                             {card.availability ? "Available" : "Unavailable"}
                           </span>
@@ -443,9 +478,12 @@ const Product = () => {
                             e.stopPropagation();
                             setSelectedCard(card);
                             setEditedDetails({
-                              priceBeforeDiscount: card.priceBeforeDiscount || "",
+                              priceBeforeDiscount:
+                                card.priceBeforeDiscount || "",
                               priceAfterDiscount: card.priceAfterDiscount || "",
-                              availability: card.availability ? "Available" : "Unavailable"
+                              availability: card.availability
+                                ? "Available"
+                                : "Unavailable",
                             });
                           }}
                         >
@@ -461,33 +499,39 @@ const Product = () => {
               {/* Fixed Container for Editing */}
               <div className="fixedcont">
                 {!selectedCard ? (
-
-                  <div className="inner" style={{
-                    backgroundImage: `url(${backImg})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center"
-                    ,
-                  }}>
+                  <div
+                    className="inner"
+                    style={{
+                      backgroundImage: `url(${backImg})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  >
                     <div className="innerlottie">
                       <DotLottieReact
                         src="https://lottie.host/00e1eb7d-eb38-4b24-a31a-3382d8cf32a0/VUhDswGtq3.lottie"
                         loop
                         autoplay
                         style={{
-                          height: 350, width: 430, position: 'relative',
-                          zIndex: 1
-                        }}   // pixels by default
-                      /></div>
-                    <div className="innersecondline" style={{
-                      position: 'relative',
-                      zIndex: 1,
-                    }}>
+                          height: 350,
+                          width: 430,
+                          position: "relative",
+                          zIndex: 1,
+                        }} // pixels by default
+                      />
+                    </div>
+                    <div
+                      className="innersecondline"
+                      style={{
+                        position: "relative",
+                        zIndex: 1,
+                      }}
+                    >
                       To edit products <br></br> Tap on any product
                     </div>
                   </div>
                 ) : (
                   <div className="fixedcont-inner">
-
                     <div className="fixe4dtopHeading">Edit Details</div>
 
                     <button
@@ -497,7 +541,6 @@ const Product = () => {
                     >
                       <span className="delete-text">Delete</span>
                       <i className="fi fi-sr-trash"></i>
-                      
                     </button>
 
                     <div className="fixedtop">
@@ -514,13 +557,17 @@ const Product = () => {
                         <h2 className="fixedcont-title">{selectedCard.name}</h2>
                         <div className="fixedcont-lastEdited">
                           <i className="fi fi-rr-clock" />
-                          <span>Last Edited {getTimeAgo(selectedCard.updatedAt)}</span>
+                          <span>
+                            Last Edited {getTimeAgo(selectedCard.updatedAt)}
+                          </span>
                         </div>
                       </div>
                     </div>
 
                     <div className="price-input-wrapper">
-                      <label className="fixedcont-label">Price Before Discount</label>
+                      <label className="fixedcont-label">
+                        Price Before Discount
+                      </label>
                       <input
                         type="text"
                         name="priceBeforeDiscount"
@@ -532,7 +579,9 @@ const Product = () => {
                     </div>
 
                     <div className="price-input-wrapper">
-                      <label className="fixedcont-label">Price After Discount</label>
+                      <label className="fixedcont-label">
+                        Price After Discount
+                      </label>
                       <input
                         type="text"
                         name="priceAfterDiscount"
@@ -566,13 +615,15 @@ const Product = () => {
                       </label>
                     </div>
 
-                    <button className="fixedcont-btn" onClick={handleEditDetails}>
+                    <button
+                      className="fixedcont-btn"
+                      onClick={handleEditDetails}
+                    >
                       Edit details
                     </button>
                   </div>
                 )}
               </div>
-
             </div>
           </div>
 
@@ -590,10 +641,18 @@ const Product = () => {
                 {/* TOP TABS (Vehicle Type Icons) */}
                 <div className="vehicle-type-tabs">
                   <div className="vehicle-type">
-                    <img src={bicycleimg} alt="bicycle" width="58px" height="58px" />
+                    <img
+                      src={bicycleimg}
+                      alt="bicycle"
+                      width="58px"
+                      height="58px"
+                    />
                     <span>Bicycle</span>
                   </div>
-                  <div className="vehicle-type active" style={{ fontSize: "28px" }}>
+                  <div
+                    className="vehicle-type active"
+                    style={{ fontSize: "28px" }}
+                  >
                     <i className="fi fi-rs-moped"></i>
                     <span>Bike</span>
                   </div>
